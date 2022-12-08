@@ -1,0 +1,7 @@
+build/
+dist/
+dist-module/
+node_modules/
+package-lock.json/
+.vscode/
+.nyc_output/

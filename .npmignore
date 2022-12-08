@@ -1,0 +1,8 @@
+includes/
+node_modules/
+.vscode/
+build/
+resources/
+src/
+tests/
+.nyc_output/

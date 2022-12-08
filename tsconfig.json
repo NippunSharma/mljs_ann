@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": false,
+    "target": "es5",
+    "outDir": "dist/",
+    "declaration": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "lib": ["es2015", "DOM"]
+  },
+  "include": [
+    "src/types/**/*"
+  ]
+}
