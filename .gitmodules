@@ -1,3 +1,9 @@
 [submodule "mlpack"]
 	path = includes/mlpack
 	url = git@github.com:mlpack/mlpack
+[submodule "includes/cereal"]
+	path = includes/cereal
+	url = git@github.com:USCiLab/cereal
+[submodule "includes/ensmallen"]
+	path = includes/ensmallen
+	url = git@github.com:mlpack/ensmallen
