@@ -3,8 +3,8 @@
 
 #include "access.hpp"
 
-#define REGISTER_LAYER_LINEAR(MatType, name) \
-        class_<mlpack::LinearType<MatType>>(name) \
+#define REGISTER_LAYER_LINEAR(name) \
+        class_<mlpack::Linear>(name) \
         .constructor<const size_t> () \
         ;
 

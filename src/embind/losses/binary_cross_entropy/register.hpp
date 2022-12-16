@@ -3,8 +3,8 @@
 
 #include "access.hpp"
 
-#define REGISTER_LOSS_BCE(T, name) \
-        class_<mlpack::BCELossType<T>>(name) \
+#define REGISTER_LOSS_BCE(name) \
+        class_<mlpack::BCELoss>(name) \
         .constructor<const double, const bool>() \
         ;
 

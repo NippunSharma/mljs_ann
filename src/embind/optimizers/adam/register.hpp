@@ -4,7 +4,7 @@
 #include "access.hpp"
 
 #define REGISTER_OPT_ADAM(name) \
-        class_<ens::AdamType>(name) \
+        class_<ens::Adam>(name) \
         .constructor<const double, const size_t, const double, const double, const double, const size_t, const double, const bool, const bool, const bool> () \
         ;
 

@@ -7,24 +7,23 @@ using namespace emscripten;
 #include <mlpack.hpp>
 
 template<typename OutputLayerType,
-         typename InitializationRuleType,
-         typename MatType>
+         typename InitializationRuleType>
 struct FFNAccess {
   template<typename LayerType>
-  static bool Add(mlpack::FFN<OutputLayerType, InitializationRuleType, MatType>& self, LayerType& layer) {
+  static bool Add(mlpack::FFN<OutputLayerType, InitializationRuleType>& self, LayerType& layer) {
     self.Add(&layer);
     return true;
   }
 
   template<typename OptimizerType>
-  typename MatType::elem_type Train(mlpack::FFN<OutputLayerType, InitializationRuleType, MatType>& self, 
-      MatType predictors, MatType responses, OptimizerType& optimizer) {
+  static double Train(mlpack::FFN<OutputLayerType, InitializationRuleType>& self,
+      arma::Mat<double> predictors, arma::Mat<double> responses, OptimizerType optimizer) {
     return self.template Train<OptimizerType>(predictors, responses, optimizer);
   }
 
-  MatType Predict(mlpack::FFN<OutputLayerType, InitializationRuleType, MatType>& self,
-      MatType predictors, const size_t batchSize = 128) {
-    MatType results;
+  static arma::Mat<double> Predict(mlpack::FFN<OutputLayerType, InitializationRuleType>& self,
+      arma::Mat<double> predictors, const size_t batchSize = 128) {
+    arma::Mat<double> results;
     self.Predict(predictors, results, batchSize);
     return results;
   }

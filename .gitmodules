@@ -7,3 +7,10 @@
 [submodule "includes/ensmallen"]
 	path = includes/ensmallen
 	url = git@github.com:mlpack/ensmallen
+[submodule "includes/mljs_linalg"]
+	path = includes/mljs_linalg
+	url = git@github.com:NippunSharma/mljs_linalg
+[submodule "includes/mljs_armadillo"]
+	path = includes/mljs_armadillo
+	url = git@github.com:NippunSharma/mljs_armadillo
+	branch = 11.4.x
