@@ -8,8 +8,9 @@ import { Adam } from "./optimizers/Adam";
 import { NLLLoss } from "./losses/NLLLoss";
 import { GlorotInit } from "./inits/GlorotInit";
 import { Dropout } from "./layers/Dropout";
+import { CustomLayer } from "./layers/CustomLayer";
 
 export type LossTypes = BCELoss | MSELoss | NLLLoss;
 export type InitializationRuleTypes = ConstInit | GlorotInit;
-export type LayerTypes = Linear | LogSoftMax | ReLU | Dropout;
+export type LayerTypes = Linear | LogSoftMax | ReLU | Dropout | CustomLayer;
 export type OptimizerTypes = Adam;

@@ -1,5 +1,5 @@
 import { FFN, BCELoss, MSELoss, Linear, ConstInit,
-         ReLU, GlorotInit, Dropout, NLLLoss, Adam } from "../dist";
+         ReLU, GlorotInit, Dropout, NLLLoss, Adam, CustomIdentity } from "../dist";
 
 import { mljsInit } from "@ml.js/core";
 import { Matrix } from "@ml.js/linalg";
@@ -26,14 +26,13 @@ describe('ffn', function() {
     const glorotInit = new GlorotInit();
     const ffn = new FFN<MSELoss, GlorotInit>(mseLoss, glorotInit);
 
-    ffn.Add<Linear>(new Linear(1));
-    ffn.Add<ReLU>(new ReLU());
+    ffn.Add<CustomIdentity>(new CustomIdentity());
 
-    const trainX: Matrix<number> = new Matrix<number>({ n_rows: 1, n_cols: 4 }, "double");
-    trainX.fromArray([0, 1, 2, 3]);
+    const trainX: Matrix<number> = new Matrix<number>({ n_rows: 1, n_cols: 5 }, "double");
+    trainX.fromArray([0, 1, 2, 3, -4]);
 
-    const trainY: Matrix<number> = new Matrix<number>({ n_rows: 1, n_cols: 4 }, "double");
-    trainY.fromArray([0, 1, 2, 3]);
+    const trainY: Matrix<number> = new Matrix<number>({ n_rows: 1, n_cols: 5 }, "double");
+    trainY.fromArray([0, 1, 2, 3, -4]);
 
     const opt: Adam = new Adam();
     const val = ffn.Train<Adam>(trainX, trainY, opt);

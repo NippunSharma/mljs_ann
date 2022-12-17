@@ -10,6 +10,7 @@
           .function("add_log_softmax", &FFNAccess<OutputLayerType, InitializationRuleType>::Add<mlpack::LogSoftMax>) \
           .function("add_relu", &FFNAccess<OutputLayerType, InitializationRuleType>::Add<mlpack::ReLU>) \
           .function("add_dropout", &FFNAccess<OutputLayerType, InitializationRuleType>::Add<mlpack::Dropout>) \
+          .function("add_custom_layer", &FFNAccess<OutputLayerType, InitializationRuleType>::AddCustomLayer) \
           .function("train_adam", &FFNAccess<OutputLayerType, InitializationRuleType>::Train<ens::Adam>) \
           .function("predict", &FFNAccess<OutputLayerType, InitializationRuleType>::Predict) \
           ;

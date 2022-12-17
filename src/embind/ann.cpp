@@ -15,12 +15,21 @@ using namespace emscripten;
 #include "layers/log_softmax/register.hpp"
 #include "layers/relu/register.hpp"
 #include "layers/dropout/register.hpp"
+#include "layers/custom_layer/register.hpp"
 
 #include "optimizers/adam/register.hpp"
 
 #include "ffn/register.hpp"
 
+#include <functional>
+
 EMSCRIPTEN_BINDINGS(mljs_ann) {
+
+  class_<std::function<arma::mat(const arma::mat&, arma::mat&)>>("forward_func_type")
+    .constructor<> ();
+
+  class_<std::function<arma::mat(const arma::mat&, const arma::mat&, arma::mat&)>>("backward_func_type")
+    .constructor<> ();
 
   REGISTER_LOSS_BCE("loss_bce")
   REGISTER_LOSS_MSE("loss_mse")
@@ -33,6 +42,7 @@ EMSCRIPTEN_BINDINGS(mljs_ann) {
   REGISTER_LAYER_LOG_SOFTMAX("layer_log_softmax")
   REGISTER_LAYER_RELU("layer_relu")
   REGISTER_LAYER_DROPOUT("layer_dropout")
+  REGISTER_LAYER_CUSTOM_LAYER("layer_custom_layer")
 
   REGISTER_OPT_ADAM("opt_adam")
 

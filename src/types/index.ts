@@ -7,5 +7,7 @@ export { Linear } from "./layers/Linear";
 export { ReLU } from "./layers/ReLU";
 export { LogSoftMax } from "./layers/LogSoftmax";
 export { Dropout } from "./layers/Dropout";
+export { CustomLayer } from "./layers/CustomLayer";
+export { CustomIdentity } from "./layers/CustomIdentity";
 export { ConstInit } from "./inits/ConstInit";
 export { GlorotInit } from "./inits/GlorotInit";

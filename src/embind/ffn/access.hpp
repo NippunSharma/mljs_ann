@@ -5,6 +5,7 @@
 using namespace emscripten;
 
 #include <mlpack.hpp>
+#include "../layers/custom_layer/custom_layer.hpp"
 
 template<typename OutputLayerType,
          typename InitializationRuleType>
@@ -12,6 +13,21 @@ struct FFNAccess {
   template<typename LayerType>
   static bool Add(mlpack::FFN<OutputLayerType, InitializationRuleType>& self, LayerType& layer) {
     self.Add(&layer);
+    return true;
+  }
+
+  static bool AddCustomLayer(mlpack::FFN<OutputLayerType, InitializationRuleType>& self,
+      const val& forward_func, const val& backward_func, const val& gradient_func) {
+    CustomLayer* layer = new CustomLayer();
+
+    layer->external_Forward = [forward_func](const arma::mat& input, arma::mat& output)
+      { output = forward_func(input, output).as<arma::mat>(); };
+    layer->external_Backward = [backward_func](const arma::mat& input, const arma::mat& gy, arma::mat& g)
+      { g = backward_func(input, gy, g).as<arma::mat>(); };
+    layer->external_Gradient = [gradient_func](const arma::mat& input, const arma::mat& error, arma::mat& gradient)
+      { gradient = gradient_func(input, error, gradient).as<arma::mat>(); };
+
+    self.Add(layer);
     return true;
   }
 

@@ -27,7 +27,17 @@ export class FFN<LossType extends LossTypes,
   }
 
   Add<LayerType extends LayerTypes>(layer: LayerType): void {
-    this.mlpack_FFN["add_" + layer.getMlpackName()](layer.getMlpackInstance());
+    if (layer.getMlpackName() !== "custom_layer") {
+      this.mlpack_FFN["add_" + layer.getMlpackName()](layer.getMlpackInstance());
+      return;
+    }
+
+    // @ts-ignore
+    this.mlpack_FFN["add_custom_layer"]((input, output) => layer.int_Forward(input, output),
+    // @ts-ignore
+        (input, gy, g) => layer.int_Backward(input, gy, g),
+    // @ts-ignore
+        (input, error, gradient) => layer.int_Gradient(input, error, gradient));
   }
 
   Train<OptimizerType extends OptimizerTypes>(predictors: Matrix<number>, responses: Matrix<number>, opt: OptimizerType) {
