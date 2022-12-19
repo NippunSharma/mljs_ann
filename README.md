@@ -17,9 +17,7 @@ import { mljsInit } from "@ml.js/core";
 import { Matrix } from "@ml.js/linalg";
 import { FFN, Linear, MSELoss, ConstInit, ReLU, Adam } from "@ml.js/ann";
 
-async trainNN() {
-  await mljsInit();
-
+mljsInit().then(() => {
   const trainX = new Matrix<number>({ n_rows: 1, n_cols: 5 }, "double"); // currently ann only supports double matrices.
   const trainY = new Matrix<number>({ n_rows: 1, n_cols: 5 }, "double");
   trainX.fromArray([0, 1, 2, 3, 4]);
@@ -33,7 +31,5 @@ async trainNN() {
 
   model.Train<Adam>(trainX, trainY, new Adam()); // start training using default Adam optimizer.
   const preds = model.Predict(trainX); // predict on data.
-}
-
-await trainNN();
+});
 ```
