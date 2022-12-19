@@ -4,6 +4,14 @@ neural networks right in the browser. It uses emscripten to
 
 compile the c++ codebase of mlpack to WebAssembly.
 
+#### Install (via npm).
+
+```bash
+npm install "@ml.js/ann"
+```
+
+#### Basic Usage.
+
 ```typescript
 import { mljsInit } from "@ml.js/core";
 import { Matrix } from "@ml.js/linalg";

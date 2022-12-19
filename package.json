@@ -40,7 +40,7 @@
     "node": ">=17.5.0"
   },
   "dependencies": {
-    "@ml.js/core": "file:../core",
-    "@ml.js/linalg": "file:../linalg"
+    "@ml.js/core": "0.1.0-beta.1",
+    "@ml.js/linalg": "0.1.0-beta.3"
   }
 }
