@@ -37,6 +37,5 @@ describe('ffn', function() {
     const opt: Adam = new Adam();
     const val = ffn.Train<Adam>(trainX, trainY, opt);
     const preds = ffn.Predict(trainX);
-    console.log(preds.toString());
   });
 });
